@@ -23,6 +23,7 @@ services:
       - CELERY_BROKER_URL=pyamqp://guest@broker//
       - CELERY_BACKEND_URL=redis://redis/0/
       - CACHE_BACKEND_URL=redis://redis/1/
+      - TELEGRAM_TOKEN=ADD_YOUR_OWN
     depends_on:
       - redis
       - broker

@@ -5,6 +5,7 @@ import requests.exceptions
 
 from . import exceptions
 from .abstract import Medium
+from .. import settings
 
 logger = logging.getLogger(__name__)
 
@@ -41,6 +42,6 @@ class Telegram(Medium):
 
     def get_message_details(self) -> dict:
         return {
-            'token': 'U2FsdGVkX1+Ws1214udQTxtTWlCM8pblQA5DyeKEg0w=',
+            'token': settings.TELEGRAM_TOKEN,
             'message': self.message_detail['body']
         }
