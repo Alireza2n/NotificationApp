@@ -1,0 +1,42 @@
+version: '3'
+networks:
+  BACKEND:
+services:
+  broker:
+    image: "rabbitmq:3-alpine"
+    restart: "no"
+    networks:
+      BACKEND:
+    ports:
+      - 56708:5672
+  redis:
+    image: "redis:6-alpine"
+    restart: "no"
+    networks:
+      BACKEND:
+    ports:
+      - 63720:6379
+  worker:
+    image: "notification_worker:latest"
+    restart: "no"
+    environment:
+      - CELERY_BROKER_URL=pyamqp://guest@broker//
+      - CELERY_BACKEND_URL=redis://redis/
+    depends_on:
+      - redis
+      - broker
+    networks:
+      BACKEND:
+  api:
+    image: "notification_api:latest"
+    restart: "no"
+    environment:
+      - CELERY_BROKER_URL=pyamqp://guest@broker//
+      - CELERY_BACKEND_URL=redis://redis/
+    depends_on:
+      - redis
+      - broker
+    networks:
+      BACKEND:
+    ports:
+      - 8000:8000

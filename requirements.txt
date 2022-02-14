@@ -1,0 +1,8 @@
+pip
+fastapi
+celery<6
+redis
+pymongo
+uvicorn[standard]
+python-decouple
+requests
