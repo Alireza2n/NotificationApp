@@ -14,5 +14,5 @@ class MessageMedium(str, Enum):
 
 class Message(BaseModel):
     mediums: list[MessageMedium] = []
-    recipients: list[str] = []
+    recipients: set[str] = []
     message_detail: MessageDetails

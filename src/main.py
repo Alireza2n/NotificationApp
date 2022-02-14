@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 
-import models, tasks
+import models
+import tasks
 
 app = FastAPI()
 

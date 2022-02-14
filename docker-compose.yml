@@ -21,7 +21,8 @@ services:
     restart: "no"
     environment:
       - CELERY_BROKER_URL=pyamqp://guest@broker//
-      - CELERY_BACKEND_URL=redis://redis/
+      - CELERY_BACKEND_URL=redis://redis/0/
+      - CACHE_BACKEND_URL=redis://redis/1/
     depends_on:
       - redis
       - broker
@@ -32,7 +33,8 @@ services:
     restart: "no"
     environment:
       - CELERY_BROKER_URL=pyamqp://guest@broker//
-      - CELERY_BACKEND_URL=redis://redis/
+      - CELERY_BACKEND_URL=redis://redis/0/
+      - CACHE_BACKEND_URL=redis://redis/1/
     depends_on:
       - redis
       - broker
